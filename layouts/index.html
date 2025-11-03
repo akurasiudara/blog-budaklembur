@@ -72,7 +72,7 @@
             {{ with $firstPost }}
             <article class="blog-featured">
                 <a href="{{ .Permalink }}">
-                    <img src="{{ .Params.image | default "/images/posts/thumbnail.png" }}" alt="{{ .Title }}" class="featured-image">
+                    <img src="{{ .Params.image | default ("/images/posts/thumbnail.png" | relURL) }}" alt="{{ .Title }}" class="featured-image">
                 </a>
                 <div class="featured-content">
                     <span class="featured-badge">Featured</span>
@@ -94,7 +94,7 @@
             {{ range $index, $post := $otherPosts }}
             <article class="{{ if eq $index 0 }}blog-top-right{{ else }}blog-bottom-right{{ end }}">
                 <a href="{{ .Permalink }}">
-                    <img src="{{ .Params.image | default "/images/posts/thumbnail.png" }}" alt="{{ .Title }}" class="post-thumbnail">
+                    <img src="{{ .Params.image | default ("/images/posts/thumbnail.png" | relURL) }}" alt="{{ .Title }}" class="post-thumbnail">
                 </a>
                 <div class="blog-content">
                     <span class="blog-number">{{ add $index 2 }}</span>
@@ -119,7 +119,7 @@
         {{ with $firstPost }}
         <div class="mobile-blog-swiper">
             <a href="{{ .Permalink }}" class="mobile-blog-featured">
-                <img src="{{ .Params.image | default "/images/posts/thumbnail.png" }}" alt="{{ .Title }}" class="mobile-featured-image">
+                <img src="{{ .Params.image | default ("/images/posts/thumbnail.png" | relURL) }}" alt="{{ .Title }}" class="mobile-featured-image">
                 <div class="mobile-featured-content">
                     <span class="mobile-featured-badge">Featured</span>
                     <h3 class="mobile-featured-title">{{ .Title }}</h3>
@@ -134,7 +134,7 @@
             <a href="{{ .Permalink }}" class="mobile-blog-card">
                 <span class="mobile-card-number">{{ add $index 2 }}</span>
                 <div class="mobile-card-header">
-                    <img src="{{ .Params.image | default "/images/posts/thumbnail.png" }}" alt="{{ .Title }}" class="mobile-card-image">
+                    <img src="{{ .Params.image | default ("/images/posts/thumbnail.png" | relURL) }}" alt="{{ .Title }}" class="mobile-card-image">
                     <div class="mobile-card-info">
                         <h4 class="mobile-card-title">{{ .Title }}</h4>
                         <div class="mobile-card-meta">
