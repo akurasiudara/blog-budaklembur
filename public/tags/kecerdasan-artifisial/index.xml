@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kecerdasan Artifisial on Budak Lembur</title>
-    <link>http://localhost:1313/tags/kecerdasan-artifisial/</link>
+    <link>http://example.org/tags/kecerdasan-artifisial/</link>
     <description>Recent content in Kecerdasan Artifisial on Budak Lembur</description>
     <generator>Hugo</generator>
     <language>id-id</language>
     <lastBuildDate>Sun, 02 Nov 2025 05:30:00 +0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/kecerdasan-artifisial/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://example.org/tags/kecerdasan-artifisial/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI Bisa Jadi Partner Koding yang Powerful</title>
-      <link>http://localhost:1313/posts/ai-bisa-jadi-partner-koding/</link>
+      <link>http://example.org/posts/ai-bisa-jadi-partner-koding/</link>
       <pubDate>Sun, 02 Nov 2025 05:30:00 +0700</pubDate>
-      <guid>http://localhost:1313/posts/ai-bisa-jadi-partner-koding/</guid>
+      <guid>http://example.org/posts/ai-bisa-jadi-partner-koding/</guid>
       <description>&lt;h1 id=&#34;perjalanan-ngoprek-ai-dan-teknologi&#34;&gt;Perjalanan Ngoprek AI dan Teknologi&lt;/h1&gt;&#xA;&lt;p&gt;Teknologi makin ke sini makin cepat perkembangannya. Dulu banyak hal terasa ribet dan makan waktu, sekarang bisa diselesaikan hanya dengan beberapa klik. Salah satu yang paling kerasa manfaatnya buat saya adalah &lt;strong&gt;kecerdasan buatan (AI)&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Awalnya saya hanya coba-coba, penasaran dengan ChatGPT dan Gemini. Tapi lama-lama, malah jadi ketagihan. Ternyata AI bisa jadi teman yang sabar saat saya lagi belajar coding. Kadang saya tanya hal remeh, kadang saya minta solusi yang ribet—dan sering kali justru lahirlah ide-ide baru. Dari sinilah beberapa proyek kecil saya mulai terbentuk.&lt;/p&gt;</description>
     </item>
   </channel>

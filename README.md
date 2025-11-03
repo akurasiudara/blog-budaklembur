@@ -1,6 +1,8 @@
 # Budak Lembur Website
 
-Website personal dengan Hugo yang mudah di-maintenance dan dikustomisasi.
+Website personal **Ifan Irfansyah** dengan Hugo yang mudah di-maintenance dan dikustomisasi.
+
+🌐 **Link Resmi:** [ifan.web.id](https://ifan.web.id)
 
 ## 📁 Struktur Proyek
 
@@ -10,8 +12,7 @@ budaklembur/
 │   ├── posts/        # Artikel blog (.md files)
 │   └── products/     # Halaman produk (.md files)
 ├── data/             # Data konfigurasi
-│   ├── links.yaml    # Link navigasi & sosial media
-│   └── products.yaml # Data produk
+│   └── links.yaml    # Link navigasi & sosial media
 ├── layouts/          # Template HTML
 │   ├── _default/     # Template default
 │   ├── partials/     # Komponen reusable
@@ -19,10 +20,52 @@ budaklembur/
 ├── static/           # File statis
 │   ├── css/         # File CSS
 │   └── images/      # Gambar
+├── tools/            # Tools untuk content management
+│   ├── create-product-content.bat    # Windows tool untuk produk
+│   ├── create-post-content.bat       # Windows tool untuk postingan
+│   ├── new-product.sh               # Linux/Mac tool untuk produk
+│   ├── new-post.sh                  # Linux/Mac tool untuk postingan
+│   ├── check-products.py            # Validasi produk
+│   └── check-posts.py               # Validasi postingan
 └── hugo.toml        # Konfigurasi utama
 ```
 
-## 🔧 CRUD Operations
+## �️ ToolOs untuk Content Management
+
+### 🚀 Cara Cepat Menambah Konten
+
+#### Windows Users
+```bash
+# Membuat produk baru
+tools/create-product-content.bat
+
+# Membuat postingan baru
+tools/create-post-content.bat
+```
+
+#### Linux/Mac Users
+```bash
+# Membuat produk baru
+./tools/new-product.sh
+
+# Membuat postingan baru
+./tools/new-post.sh
+```
+
+#### Validasi Konten
+```bash
+# Cek semua produk
+python tools/check-products.py
+
+# Cek semua postingan
+python tools/check-posts.py
+```
+
+### 📖 Panduan Lengkap
+- **Produk:** Lihat file `CARA-TAMBAH-PRODUK.md`
+- **Postingan:** Lihat file `CARA-TAMBAH-POSTINGAN.md`
+
+## 🔧 Manual Content Management
 
 ### 1. Mengelola Link Navigasi & Sosial Media
 
@@ -30,10 +73,10 @@ budaklembur/
 
 ```yaml
 - name: "Instagram"
-  url: "https://instagram.com/username"
+  url: "https://instagram.com/presiden.irfans"
   icon: "fab fa-instagram"
 - name: "Facebook"
-  url: "https://facebook.com/username"
+  url: "https://facebook.com/presiden.irfans"
   icon: "fab fa-facebook"
 - name: "Email"
   url: "mailto:email@example.com"
@@ -45,36 +88,39 @@ budaklembur/
 - Link akan otomatis muncul di navbar dan hero section
 - Gunakan icon Font Awesome untuk konsistensi
 
-### 2. Mengelola Produk
+### 2. Mengelola Produk (Sistem Baru - Single File)
 
-**File:** `data/products.yaml`
+**Lokasi:** `content/products/`
 
-```yaml
-- title: "Nama Produk"
-  slug: "nama-produk"
-  price: "Rp 50.000"
-  image: "https://example.com/image.jpg"
-  images:
-    - "https://example.com/image1.jpg"
-    - "https://example.com/image2.jpg"
-    - "https://example.com/image3.jpg"
-  description: |
-    Deskripsi produk lengkap dengan format Markdown.
-    
-    **Spesifikasi:**
-    - Bahan: Premium quality
-    - Ukuran: Standar
-    
-    **Keunggulan:**
-    - Kualitas terjamin
-    - Harga kompetitif
-    
-    Perfect untuk kebutuhan Anda!
+**Format File:** `nama-produk.md`
+
+```markdown
+---
+title: "Nama Produk"
+price: "Rp 50.000"
+image: "/images/products/nama-produk.jpg"
+images:
+  - "/images/products/nama-produk-1.jpg"
+  - "/images/products/nama-produk-2.jpg"
+  - "/images/products/nama-produk-3.jpg"
+---
+
+Deskripsi produk lengkap dengan format Markdown.
+
+**Spesifikasi:**
+- Bahan: Premium quality
+- Ukuran: Standar
+
+**Keunggulan:**
+- Kualitas terjamin
+- Harga kompetitif
+
+Perfect untuk kebutuhan Anda!
 ```
 
 **Cara Edit:**
-- Tambah produk baru dengan menambah item di array
-- `slug` harus unik dan URL-friendly
+- Buat file `.md` baru di folder `content/products/`
+- Setiap produk = 1 file terpisah
 - `images` untuk carousel di halaman detail
 - Produk otomatis muncul di homepage
 
@@ -115,7 +161,7 @@ Paragraf dengan **bold** dan *italic*.
 **File:** `hugo.toml`
 
 ```toml
-baseURL = 'https://yoursite.com/'
+baseURL = 'https://ifan.web.id/'
 languageCode = 'id-id'
 title = 'Budak Lembur'
 
@@ -170,17 +216,38 @@ hugo
 
 ## 📝 Content Management Workflow
 
-### Menambah Postingan Baru
+### ⚡ Workflow Cepat (Menggunakan Tools)
+
+#### Menambah Produk Baru
+1. Jalankan `tools/create-product-content.bat` (Windows) atau `./tools/new-product.sh` (Linux/Mac)
+2. Isi informasi yang diminta (slug, nama, harga)
+3. Edit file yang dibuat untuk melengkapi deskripsi
+4. Upload gambar ke `static/images/products/`
+5. Commit & push ke repository
+
+#### Menambah Postingan Baru
+1. Jalankan `tools/create-post-content.bat` (Windows) atau `./tools/new-post.sh` (Linux/Mac)
+2. Isi informasi yang diminta (slug, judul, tags, gambar)
+3. Edit file yang dibuat untuk melengkapi konten
+4. Commit & push ke repository
+
+#### Validasi Konten
+1. Jalankan `python tools/check-products.py` untuk cek produk
+2. Jalankan `python tools/check-posts.py` untuk cek postingan
+3. Perbaiki jika ada error atau warning
+
+### 📝 Workflow Manual
+
+#### Menambah Produk Baru
+1. Buat file `content/products/nama-produk.md`
+2. Isi frontmatter dan konten sesuai format
+3. Upload gambar ke `static/images/products/`
+4. Commit & push ke repository
+
+#### Menambah Postingan Baru
 1. Buat file `content/posts/judul-post.md`
 2. Isi frontmatter dan konten
 3. Commit & push ke repository
-4. Website otomatis update (jika pakai Netlify/GitHub Pages)
-
-### Menambah Produk Baru
-1. Edit `data/products.yaml`
-2. Tambah entry baru dengan data lengkap
-3. Commit & push
-4. Produk otomatis muncul di homepage
 
 ### Mengubah Link Sosial Media
 1. Edit `data/links.yaml`
@@ -231,16 +298,27 @@ Edit file `static/css/main.css`:
 Untuk pertanyaan atau masalah:
 1. Cek dokumentasi Hugo: https://gohugo.io/documentation/
 2. Cek issue di repository
-3. Contact developer
+3. Contact: **Ifan Irfansyah** - [ifan.web.id](https://ifan.web.id)
 
 ## 📄 File Penting
 
 - `hugo.toml` → Konfigurasi utama
 - `data/links.yaml` → Link navigasi
-- `data/products.yaml` → Data produk
 - `content/posts/` → Artikel blog
+- `content/products/` → Halaman produk (sistem baru)
 - `static/css/` → Styling website
 - `layouts/` → Template HTML
+
+## 🛠️ Tools & Scripts
+
+- `tools/create-product-content.bat` → Windows tool untuk produk
+- `tools/create-post-content.bat` → Windows tool untuk postingan
+- `tools/new-product.sh` → Linux/Mac tool untuk produk
+- `tools/new-post.sh` → Linux/Mac tool untuk postingan
+- `tools/check-products.py` → Validasi produk
+- `tools/check-posts.py` → Validasi postingan
+- `CARA-TAMBAH-PRODUK.md` → Panduan lengkap produk
+- `CARA-TAMBAH-POSTINGAN.md` → Panduan lengkap postingan
 
 ## 🔄 Backup & Recovery
 
@@ -257,3 +335,15 @@ Untuk pertanyaan atau masalah:
 ---
 
 **Tips:** Selalu test di local dengan `hugo server` sebelum deploy ke production!
+---
+
+
+## 👨‍💻 Developer
+
+**Ifan Irfansyah**  
+🌐 Website: [ifan.web.id](https://ifan.web.id)  
+📧 Email: [contact@ifan.web.id](mailto:hi@ifan.web.id)
+
+---
+
+*Website ini dibuat dengan ❤️ menggunakan Hugo Static Site Generator*
