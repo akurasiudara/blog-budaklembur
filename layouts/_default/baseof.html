@@ -125,7 +125,32 @@
 
 
     <script>
-    
+        // Force CSS reload if cache detected
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if we're using cached version by looking for specific elements
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const computedStyle = window.getComputedStyle(hero);
+                const hasGlassEffect = computedStyle.backdropFilter.includes('blur') || 
+                                     computedStyle.webkitBackdropFilter.includes('blur');
+                
+                if (!hasGlassEffect) {
+                    // Force reload CSS files
+                    const cssLinks = document.querySelectorAll('link[rel="stylesheet"][href*="css/"]');
+                    cssLinks.forEach(link => {
+                        const newLink = link.cloneNode();
+                        newLink.href = link.href.split('?')[0] + '?v=' + Date.now();
+                        link.parentNode.insertBefore(newLink, link.nextSibling);
+                        link.remove();
+                    });
+                    
+                    // Reload page after a short delay
+                    setTimeout(() => {
+                        window.location.reload(true);
+                    }, 1000);
+                }
+            }
+        });
 
         // Add smooth scroll behavior
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
