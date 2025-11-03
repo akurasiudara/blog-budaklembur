@@ -8,10 +8,10 @@
     <meta http-equiv="Expires" content="0">
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ "css/navbar.css" | absURL }}?v={{ now.Unix }}">
-    <link rel="stylesheet" href="{{ "css/posts.css" | absURL }}?v={{ now.Unix }}">
-    <link rel="stylesheet" href="{{ "css/post.css" | absURL }}?v={{ now.Unix }}">
-    <link rel="stylesheet" href="{{ "css/main.css" | absURL }}?v={{ now.Unix }}">
+    <link rel="stylesheet" href="{{ "css/navbar.css" | absURL }}?v={{ now.Format "20060102150405" }}">
+    <link rel="stylesheet" href="{{ "css/posts.css" | absURL }}?v={{ now.Format "20060102150405" }}">
+    <link rel="stylesheet" href="{{ "css/post.css" | absURL }}?v={{ now.Format "20060102150405" }}">
+    <link rel="stylesheet" href="{{ "css/main.css" | absURL }}?v={{ now.Format "20060102150405" }}">
     <style>
         /* Additional styles for better compatibility */
         .blog-featured a, .blog-top-right a, .blog-bottom-right a {
