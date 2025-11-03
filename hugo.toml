@@ -15,3 +15,6 @@ title = 'Budak Lembur'
 
 # Build postingan dengan tanggal di masa depan
 buildFuture = true
+
+# Force rebuild untuk Cloudflare Pages
+# Updated: 2025-11-03
