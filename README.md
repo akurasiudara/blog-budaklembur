@@ -342,7 +342,7 @@ Untuk pertanyaan atau masalah:
 
 **Ifan Irfansyah**  
 🌐 Website: [ifan.web.id](https://ifan.web.id)  
-📧 Email: [contact@ifan.web.id](mailto:hi@ifan.web.id)
+📧 Email: [hi@ifan.web.id](mailto:hi@ifan.web.id)
 
 ---
 
