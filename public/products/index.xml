@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Products on Budak Lembur</title>
+    <link>http://localhost:1313/products/</link>
+    <description>Recent content in Products on Budak Lembur</description>
+    <generator>Hugo</generator>
+    <language>id-id</language>
+    <atom:link href="http://localhost:1313/products/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cetak Foto Polaroid</title>
+      <link>http://localhost:1313/products/cetak-foto-polaroid/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/cetak-foto-polaroid/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gantungan Kunci Akrilik</title>
+      <link>http://localhost:1313/products/gantungan-kunci-akrilik/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/gantungan-kunci-akrilik/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kaos Custom Satuan</title>
+      <link>http://localhost:1313/products/kaos-custom-satuan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/kaos-custom-satuan/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kemeja PDL Komunitas</title>
+      <link>http://localhost:1313/products/kemeja-pdl-komunitas/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/products/kemeja-pdl-komunitas/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

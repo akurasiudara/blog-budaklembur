@@ -1,0 +1,22 @@
+# Cloudflare Pages configuration
+name = "budaklembur"
+compatibility_date = "2023-11-01"
+
+[build]
+command = "hugo --gc --minify"
+cwd = "."
+watch_dir = "."
+
+[build.environment]
+HUGO_VERSION = "0.120.4"
+HUGO_ENV = "production"
+
+[[build.upload.rules]]
+type = "include"
+globs = ["public/**/*"]
+
+[env.production]
+HUGO_BASEURL = "https://budaklembur.pages.dev"
+
+[env.preview]
+HUGO_BASEURL = "https://preview.budaklembur.pages.dev"

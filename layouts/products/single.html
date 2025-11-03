@@ -1,0 +1,157 @@
+{{ define "main" }}
+<section class="section">
+    <div class="container product-detail-container">
+        <div class="product-detail-grid">
+            <div class="product-gallery">
+                {{ $images := .Params.images }}
+                <div class="product-carousel">
+                    <div class="carousel-container" id="carousel-container">
+                        {{ range $index, $img := $images }}
+                        <div class="carousel-slide {{ if eq $index 0 }}active{{ end }}">
+                            <img src="{{ $img }}" alt="{{ .Title }} - Foto {{ add $index 1 }}">
+                        </div>
+                        {{ end }}
+                    </div>
+                    {{ if gt (len $images) 1 }}
+                    <button class="carousel-btn carousel-prev" id="carousel-prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn carousel-next" id="carousel-next"><i class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-indicators" id="carousel-indicators">
+                        {{ range $index, $img := $images }}
+                        <span class="indicator {{ if eq $index 0 }}active{{ end }}" data-slide-to="{{ $index }}"></span>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+                
+                <!-- Thumbnail navigation -->
+                {{ if gt (len $images) 1 }}
+                <div class="carousel-thumbnails">
+                    {{ range $index, $img := $images }}
+                    <img src="{{ $img }}" alt="Thumbnail {{ add $index 1 }}" class="thumbnail {{ if eq $index 0 }}active{{ end }}" data-slide-to="{{ $index }}">
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+
+            <div class="product-info-panel">
+                <h1 class="product-title-detail">{{ .Title }}</h1>
+                <div class="product-price-detail">{{ .Params.price }}</div>
+                <div class="content product-description-detail">
+                    {{ .Content }}
+                </div>
+                
+                <div class="product-actions">
+                    <a href="javascript:void(0)" class="order-btn" onclick="orderProductViaWhatsApp('{{ .Title }}', '{{ .Params.price }}')">
+                        <i class="fab fa-whatsapp"></i> Pesan Sekarang
+                    </a>
+                </div>
+
+                <div class="product-share">
+                    {{ partial "share-buttons.html" . }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function orderProductViaWhatsApp(title, price) {
+    const phone = "628161112148"; 
+    const message = `Halo, saya tertarik dengan produk "${title}" (${price}).`;
+    const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.querySelector('.product-carousel');
+    if (!carousel) return;
+
+    let currentSlide = 0;
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const indicators = carousel.querySelectorAll('.indicator');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    const nextBtn = document.getElementById('carousel-next');
+    const prevBtn = document.getElementById('carousel-prev');
+    const container = document.getElementById('carousel-container');
+
+    function showSlide(index) {
+        if (index >= slides.length) index = 0;
+        if (index < 0) index = slides.length - 1;
+
+        // Update slides
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+
+        // Update indicators
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        if (indicators[index]) indicators[index].classList.add('active');
+
+        // Update thumbnails
+        thumbnails.forEach(thumb => thumb.classList.remove('active'));
+        if (thumbnails[index]) thumbnails[index].classList.add('active');
+
+        // Slide animation
+        if (container) {
+            container.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        currentSlide = index;
+    }
+
+    // Navigation buttons
+    if (nextBtn) nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+    if (prevBtn) prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+
+    // Indicators
+    indicators.forEach(indicator => {
+        indicator.addEventListener('click', () => {
+            const slideTo = parseInt(indicator.getAttribute('data-slide-to'));
+            showSlide(slideTo);
+        });
+    });
+
+    // Thumbnails
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', () => {
+            const slideTo = parseInt(thumbnail.getAttribute('data-slide-to'));
+            showSlide(slideTo);
+        });
+    });
+
+    // Touch/swipe support
+    let startX = 0;
+    let endX = 0;
+
+    container.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    container.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const threshold = 50;
+        const diff = startX - endX;
+
+        if (Math.abs(diff) > threshold) {
+            if (diff > 0) {
+                showSlide(currentSlide + 1); // Swipe left - next
+            } else {
+                showSlide(currentSlide - 1); // Swipe right - prev
+            }
+        }
+    }
+});
+</script>
+
+{{ else }}
+<section class="section">
+    <div class="container has-text-centered">
+        <h1 class="title is-1">Produk tidak ditemukan</h1>
+        <p class="subtitle">Maaf, produk '{{ $slug }}' tidak ada.</p>
+    </div>
+</section>
+{{ end }}
+{{ end }}

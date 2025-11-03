@@ -1,0 +1,17 @@
+<div class="share-section">
+    <h4 class="share-title">Yuk, bagikan artikel ini!</h4>
+    <div class="share-buttons">
+        <a class="share-btn share-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" target="_blank" rel="noopener" data-tooltip="Facebook" title="Bagikan ke Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="share-btn share-twitter" href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title | urlquery }}" target="_blank" rel="noopener" data-tooltip="Twitter" title="Bagikan ke Twitter">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a class="share-btn share-whatsapp" href="https://api.whatsapp.com/send?text={{ .Title | urlquery }}%20{{ .Permalink }}" target="_blank" rel="noopener" data-tooltip="WhatsApp" title="Bagikan ke WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <button class="share-btn share-copy" id="copy-link-btn" data-url="{{ .Permalink }}" data-tooltip="Salin Link" title="Salin link">
+            <i class="fas fa-copy"></i>
+        </button>
+    </div>
+</div>

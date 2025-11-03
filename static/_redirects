@@ -1,0 +1,12 @@
+# Cloudflare Pages redirects
+/admin/* 404
+/.env 404
+/.git/* 404
+/config/* 404
+
+# Force HTTPS
+http://budaklembur.pages.dev/* https://budaklembur.pages.dev/:splat 301!
+
+# Clean URLs (optional)
+/posts/index.html /posts/ 301
+/tags/index.html /tags/ 301

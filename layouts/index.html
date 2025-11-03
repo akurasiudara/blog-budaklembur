@@ -1,0 +1,168 @@
+{{ define "main" }}
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="profile-wrapper">
+            <img class="profile-img" src="https://picsum.photos/seed/budaklembur/300/300.jpg" alt="Profile">
+        </div>
+        <h1 class="main-title">{{ .Site.Title }}</h1>
+        <p class="subtitle">{{ .Site.Params.subtitle }}</p>
+        
+        <div class="social-container">
+            <div class="social-links">
+                {{ range $index, $link := .Site.Data.links }}
+                <a href="{{ .url }}" class="social-link" target="_blank" data-social-text="{{ .name }} yuk!">
+                    <i class="{{ .icon }}"></i>
+                    <span>{{ .name }}</span>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Professional floating elements -->
+    <div class="hero-decorations">
+        <div class="hero-icon hero-icon-1"><i class="fas fa-bullseye"></i></div>
+        <div class="hero-icon hero-icon-2"><i class="fas fa-lightbulb"></i></div>
+        <div class="hero-icon hero-icon-3"><i class="fas fa-rocket"></i></div>
+        <div class="hero-icon hero-icon-4"><i class="fas fa-star"></i></div>
+        <div class="hero-icon hero-icon-5"><i class="fas fa-palette"></i></div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-header">
+        <h2 class="section-title"><i class="fas fa-shopping-bag"></i> Produk Unggulan</h2>
+        <p class="section-subtitle">Hasil karya yang dibuat dengan cinta dan ketelitian</p>
+    </div>
+    <div class="products-container">
+        {{ $products := where .Site.RegularPages "Section" "products" }}
+        {{ range $index, $product := $products }}
+        <div class="product-item" style="--rotate: {{ index (slice "-2deg" "1deg" "-1deg") (mod $index 3) }};" onclick="window.location.href='{{ $product.Permalink }}'" data-product-icon="{{ index (slice "fas fa-camera" "fas fa-key" "fas fa-tshirt") (mod $index 3) }}">
+            <div class="product-image-wrapper">
+                <img class="product-image" src="{{ $product.Params.image }}" alt="{{ $product.Title }}">
+                <div class="product-overlay">
+                    <span class="product-cta">Lihat Detail! 👀</span>
+                </div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">{{ $product.Title }}</h3>
+                <p class="product-price">{{ $product.Params.price }}</p>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-header">
+        <h2 class="section-title"><i class="fas fa-pen-alt"></i> Artikel Terbaru</h2>
+        <p class="section-subtitle">Berbagi pengalaman, tips, dan hal-hal menarik lainnya</p>
+    </div>
+    
+    {{ $pages := where .Site.RegularPages "Section" "posts" }}
+    {{ $sortedPages := $pages.ByDate.Reverse }}
+    {{ $featured := first 3 $sortedPages }}
+    {{ $firstPost := index $featured 0 }}
+    {{ $otherPosts := after 1 $featured }}
+
+    <!-- DESKTOP BLOG LAYOUT -->
+    <div class="blog-grid-container">
+        <div class="blog-grid">
+            {{ with $firstPost }}
+            <article class="blog-featured">
+                <a href="{{ .Permalink }}">
+                    <img src="{{ .Params.image | default "/images/posts/thumbnail.png" }}" alt="{{ .Title }}" class="featured-image">
+                </a>
+                <div class="featured-content">
+                    <span class="featured-badge">Featured</span>
+                    <h3 class="featured-title"><a href="{{ .Permalink }}" style="color: inherit; text-decoration: none;">{{ .Title }}</a></h3>
+                    <p class="featured-excerpt">{{ .Summary | truncate 150 }}</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> {{ .ReadingTime }} min baca</span>
+                        <span><i class="far fa-calendar"></i> {{ .Date.Format "2 Jan 2006" }}</span>
+                    </div>
+                    <div class="blog-tags">
+                        {{ range .Params.tags }}
+                        <a href="{{ ($.Site.GetPage (printf "/tags/%s" .)).Permalink }}" class="mini-tag">{{ . }}</a>
+                        {{ end }}
+                    </div>
+                </div>
+            </article>
+            {{ end }}
+
+            {{ range $index, $post := $otherPosts }}
+            <article class="{{ if eq $index 0 }}blog-top-right{{ else }}blog-bottom-right{{ end }}">
+                <a href="{{ .Permalink }}">
+                    <img src="{{ .Params.image | default "/images/posts/thumbnail.png" }}" alt="{{ .Title }}" class="post-thumbnail">
+                </a>
+                <div class="blog-content">
+                    <span class="blog-number">{{ add $index 2 }}</span>
+                    <h4 class="blog-title"><a href="{{ .Permalink }}" style="color: inherit; text-decoration: none;">{{ .Title }}</a></h4>
+                    <div class="blog-meta">
+                        <span><i class="far fa-clock"></i> {{ .ReadingTime }} min</span>
+                        <span><i class="far fa-calendar"></i> {{ .Date.Format "2 Jan" }}</span>
+                    </div>
+                    <div class="blog-tags">
+                        {{ range .Params.tags }}
+                        <a href="{{ ($.Site.GetPage (printf "/tags/%s" .)).Permalink }}" class="mini-tag">{{ . }}</a>
+                        {{ end }}
+                    </div>
+                </div>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+
+    <!-- MOBILE BLOG LAYOUT -->
+    <div class="mobile-blog-container">
+        {{ with $firstPost }}
+        <div class="mobile-blog-swiper">
+            <a href="{{ .Permalink }}" class="mobile-blog-featured">
+                <img src="{{ .Params.image | default "/images/posts/thumbnail.png" }}" alt="{{ .Title }}" class="mobile-featured-image">
+                <div class="mobile-featured-content">
+                    <span class="mobile-featured-badge">Featured</span>
+                    <h3 class="mobile-featured-title">{{ .Title }}</h3>
+                    <p class="mobile-featured-excerpt">{{ .Summary | truncate 100 }}</p>
+                </div>
+            </a>
+        </div>
+        {{ end }}
+
+        <div class="mobile-cards-stack">
+            {{ range $index, $post := $otherPosts }}
+            <a href="{{ .Permalink }}" class="mobile-blog-card">
+                <span class="mobile-card-number">{{ add $index 2 }}</span>
+                <div class="mobile-card-header">
+                    <img src="{{ .Params.image | default "/images/posts/thumbnail.png" }}" alt="{{ .Title }}" class="mobile-card-image">
+                    <div class="mobile-card-info">
+                        <h4 class="mobile-card-title">{{ .Title }}</h4>
+                        <div class="mobile-card-meta">
+                            <span><i class="far fa-clock"></i> {{ .ReadingTime }} min</span>
+                            <span><i class="far fa-calendar"></i> {{ .Date.Format "2 Jan" }}</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+    
+    <div class="view-more-container">
+        <a href="{{ "/posts" | relURL }}" class="view-more-btn">Lihat Postingan Lainnya</a>
+    </div>
+</section>
+
+<section class="categories-section">
+    <h2 class="categories-title"><i class="fas fa-folder-open"></i> Kategori</h2>
+    <div class="categories-flow">
+        {{ $tags := .Site.Taxonomies.tags }}
+        {{ range $tagName, $taxonomy := $tags }}
+        <a href="{{ $taxonomy.Page.Permalink }}" class="category-bubble" style="--delay: {{ mul (index (shuffle (seq 1 8)) 0) 0.5 }}s">
+            {{ $taxonomy.Page.Title }}
+        </a>
+        {{ end }}
+    </div>
+</section>
+
+{{ end }}

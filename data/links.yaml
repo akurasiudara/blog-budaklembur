@@ -1,0 +1,12 @@
+- name: "Instagram"
+  url: "https://instagram.com/akun-anda"
+  icon: "fab fa-instagram"
+- name: "Untaian Kata"
+  url: "/blog/" # Contoh link ke blog
+  icon: "fas fa-link"
+- name: "Facebook"
+  url: "https://facebook.com/akun-anda"
+  icon: "fab fa-facebook"
+- name: "Al-Karomah"
+  url: "#" # Link ke SDIT Al-Karomah
+  icon: "fas fa-graduation-cap"

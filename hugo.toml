@@ -1,0 +1,17 @@
+baseURL = 'http://example.org/'
+languageCode = 'id-id'
+title = 'Budak Lembur'
+
+[params]
+  subtitle = 'Selamat datang di ruang digital saya'
+
+[taxonomies]
+  tag = 'tags'
+  category = 'categories'
+
+# Untuk menampilkan postingan blog
+[markup.goldmark.renderer]
+  unsafe = true # Diperlukan agar tombol share berfungsi
+
+# Build postingan dengan tanggal di masa depan
+buildFuture = true

@@ -1,0 +1,62 @@
+{{ define "main" }}
+<div class="posts-page">
+    <header class="posts-header">
+        <h1 class="posts-title">{{ .Title }}</h1>
+        {{ if .Content }}
+        <div class="posts-description">{{ .Content }}</div>
+        {{ end }}
+    </header>
+
+    <main class="posts-grid">
+        {{ range .Paginator.Pages }}
+        <article class="post-card">
+            {{ if .Params.image }}
+            <div class="post-card-image">
+                <a href="{{ .Permalink }}">
+                    <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                </a>
+            </div>
+            {{ end }}
+            
+            <div class="post-card-content">
+                <header class="post-card-header">
+                    <h2 class="post-card-title">
+                        <a href="{{ .Permalink }}">{{ .Title }}</a>
+                    </h2>
+                    <div class="post-card-meta">
+                        <time class="post-card-date">
+                            <i class="far fa-calendar"></i>
+                            {{ .Date.Format "2 Jan 2006" }}
+                        </time>
+                        <span class="post-card-reading">
+                            <i class="far fa-clock"></i>
+                            {{ .ReadingTime }} menit
+                        </span>
+                    </div>
+                </header>
+                
+                <div class="post-card-excerpt">
+                    {{ .Summary | truncate 120 }}
+                </div>
+                
+                {{ if .Params.tags }}
+                <footer class="post-card-tags">
+                    {{ range .Params.tags }}
+                    <a href="{{ ($.Site.GetPage (printf "/tags/%s" .)).Permalink }}" class="post-card-tag">#{{ . }}</a>
+                    {{ end }}
+                </footer>
+                {{ end }}
+            </div>
+        </article>
+        {{ end }}
+    </main>
+
+    {{ if eq (len .Paginator.Pages) 0 }}
+    <div class="no-posts">
+        <i class="fas fa-file-alt"></i>
+        <h3>Belum ada postingan</h3>
+        <p>Postingan akan muncul di sini setelah dipublikasikan.</p>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

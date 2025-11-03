@@ -1,0 +1,40 @@
+<nav class="main-navbar">
+    <div class="nav-container">
+        <!-- Brand/Logo -->
+        <div class="nav-brand">
+            <a href="{{ "/" | relURL }}" class="brand-link">
+                <i class="fas fa-code"></i>
+                <span class="brand-text">BUDAK LEMBUR</span>
+            </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="nav-desktop">
+            {{ range .Site.Data.links }}
+            <a href="{{ .url }}" class="nav-item" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener"{{ end }}>
+                <i class="{{ .icon }}"></i>
+                <span>{{ .name }}</span>
+            </a>
+            {{ end }}
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="nav-mobile" id="nav-mobile">
+        <div class="mobile-nav-content">
+            {{ range .Site.Data.links }}
+            <a href="{{ .url }}" class="mobile-nav-item" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener"{{ end }}>
+                <i class="{{ .icon }}"></i>
+                <span>{{ .name }}</span>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</nav>

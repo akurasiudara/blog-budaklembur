@@ -1,0 +1,78 @@
+<footer class="footer-wrapper">
+    <div class="footer-credits-only">
+        <div class="footer-credits-wrapper">
+                <div class="credit-header">
+                    <span class="credit-label">Dibuat oleh</span>
+                    <span class="credit-who" id="credit-who"></span>
+                </div>
+                <div class="credit-footer">
+                    <span class="credit-with">dengan</span>
+                    <span class="credit-heart"><3</span>
+                    <span class="credit-using">menggunakan</span>
+                    <span class="credit-hugo">Hugo</span>
+                </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const whoElement = document.getElementById('credit-who');
+        if (!whoElement) return;
+        
+        // Kata-kata yang mempresentasikan creator
+        const whoPhrases = [
+            'seorang guru yang suka ngulik teknologi 👨‍🏫',
+            'pendidik yang hobi coding 💻',
+            'aktivis sosial yang gemar berkarya 🤝',
+            'pengusaha yang suka belajar hal baru 📚',
+            'guru SD yang passionate dengan teknologi 🎓',
+            'educator sekaligus tech enthusiast 🔧',
+            'seseorang yang percaya teknologi bisa membantu pendidikan 📱',
+            'aktivis yang menggunakan teknologi untuk kebaikan 🌟',
+            'pengusaha yang mulai dari nol 🚀',
+            'guru yang suka berbagi ilmu melalui teknologi 💡',
+            'pendidik yang tidak pernah berhenti belajar 📖',
+            'seseorang yang percaya setiap masalah ada solusinya 🔍',
+            'aktivis sosial yang memanfaatkan teknologi 🌍',
+            'entrepreneur yang dimulai dari passion mengajar 💼',
+            'guru yang suka eksperimen dengan tools baru ⚗️',
+            'pendidik yang percaya teknologi adalah alat, bukan tujuan 🎯'
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
+        
+        function typeWho() {
+            const currentPhrase = whoPhrases[phraseIndex];
+            
+            if (isDeleting) {
+                whoElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 30; // Faster when deleting
+            } else {
+                whoElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 100; // Normal typing speed
+            }
+            
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                // Finished typing, wait before deleting
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                // Finished deleting, move to next phrase
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % whoPhrases.length;
+                typeSpeed = 500;
+            }
+            
+            setTimeout(typeWho, typeSpeed);
+        }
+        
+        // Start typing effect
+        typeWho();
+    });
+</script>
