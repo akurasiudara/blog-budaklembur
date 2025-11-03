@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ "/css/navbar.css" | relURL }}?v={{ now.Unix }}">
-    <link rel="stylesheet" href="{{ "/css/posts.css" | relURL }}?v={{ now.Unix }}">
-    <link rel="stylesheet" href="{{ "/css/post.css" | relURL }}?v={{ now.Unix }}">
-    <link rel="stylesheet" href="{{ "/css/main.css" | relURL }}?v={{ now.Unix }}">
+    <link rel="stylesheet" href="{{ "css/navbar.css" | absURL }}?v={{ now.Unix }}">
+    <link rel="stylesheet" href="{{ "css/posts.css" | absURL }}?v={{ now.Unix }}">
+    <link rel="stylesheet" href="{{ "css/post.css" | absURL }}?v={{ now.Unix }}">
+    <link rel="stylesheet" href="{{ "css/main.css" | absURL }}?v={{ now.Unix }}">
     <style>
         /* Additional styles for better compatibility */
         .blog-featured a, .blog-top-right a, .blog-bottom-right a {
