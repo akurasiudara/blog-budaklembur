@@ -10,3 +10,9 @@ http://budaklembur.pages.dev/* https://budaklembur.pages.dev/:splat 301!
 # Clean URLs (optional)
 /posts/index.html /posts/ 301
 /tags/index.html /tags/ 301
+
+# Force cache refresh for HTML files
+/*.html 200
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
